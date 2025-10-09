@@ -1,4 +1,4 @@
-// Livro.ts
+// Livro.ts que importa todas as classes
 import { Personagem } from "./Personagens";
 import { Inventario } from "./Inventario";
 import { PaginaComun } from "./Base";
@@ -18,7 +18,7 @@ export class Livro {
         this.paginaAtualId = 1; // Começa na página 1
     }
 
-    // Inicia o jogo
+    // Inicia o jogo, que vai imprimir quando começar o jogo
     iniciar(): void {
         console.log("=== A JORNADA DO ANEL ANTIGO ===");
         console.log("Bem-vindo, viajante! Suas escolhas moldarão este mundo...\n");
@@ -30,7 +30,8 @@ export class Livro {
     private executarCicloJogo(): void {
         while (this.paginaAtualId !== 100) { // 100 é o ID final
             const paginaEncontrada = paginas.find(p => p.id === this.paginaAtualId);
-            
+
+            //se nao tiver uma pagina vai imprimir "erro: pagina nao encontrada"
             if (!paginaEncontrada) {
                 console.log("❌ Erro: Página não encontrada!");
                 break;
@@ -164,4 +165,5 @@ export class Livro {
 if (require.main === module) {
     const jogo = new Livro();
     jogo.iniciar();
+
 }
