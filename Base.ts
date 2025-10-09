@@ -6,9 +6,9 @@ import readlineSync from 'readline-sync';
 // Define a estrutura comum que todas as páginas devem ter
 export abstract class Pagina {
     constructor(
-        public id: number,           // Identificador único da página
-        public texto: string,        // História que será mostrada ao jogador
-        public opcoes: string[]      // Lista de escolhas disponíveis
+        public id: number,           
+        public texto: string,        
+        public opcoes: string[]      
     ) {}
 
     // Método que toda página deve implementar
@@ -23,7 +23,7 @@ export class PaginaComun extends Pagina {
         texto: string,
         opcoes: string[]
     ) {
-        super(id, texto, opcoes);
+        super(id, texto, opcoes,); // atributos herdados de paginas
     }
 
     // Mostra o texto da página e as opções disponíveis
@@ -31,12 +31,13 @@ export class PaginaComun extends Pagina {
     executar(personagem: Personagem, inventario: Inventario): number {
         console.log(`\n ${this.texto}\n`);
         
+        //se for maio que zero imprime as opções se não, não
         if (this.opcoes.length > 0) {
             console.log("Opções:");
-            this.opcoes.forEach((opcao, index) => {
+            this.opcoes.forEach((opcao, index) => { // função para imprimir a quantidade de opções que tiver no array
                 console.log(`${index + 1}. ${opcao}`);
             });
-            
+
             // Pega a resposta do jogador e converte para número
             const resposta = readlineSync.question('\nEscolha uma opção: ');
             return parseInt(resposta);
